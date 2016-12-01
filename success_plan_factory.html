@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="success_plan_factory.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Crie seu Plano de Sucesso</title>
+    <style media="screen">
+      .row{
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1 class='text-center'>Fábrica de Planos de <strong>Sucesso</strong></p>
+      </div>
+
+      <div class="row">
+        <form class="form-group" action="" id='success-plan-form'>
+          <div id="form-inputs">
+            <div class="row">
+              <p class='text-center lead'>Dados do Plano</p>
+            </div>
+            <div class="row">
+              <div id='success-plan' class='form-group'>
+                <div class="form-group">
+                  <label for="success-plan-title">Título do Plano de Sucesso</label>
+                  <input type="text" name="success-plan-title" class='form-control' value="" required='true'>
+                </div>
+
+                <div class="form-group">
+                  <label for="success-plan-description">Descrição do Plano de Sucesso</label>
+                  <input type="text" name="success-plan-description" class='form-control' value="" required='true'>
+                </div>
+
+                <div class="form-group">
+                  <label for="success-plan-key">Chave para o plano de sucesso (será usada no código)</label>
+                  <input type="text" name="success-plan-key" placeholder='success_plan_short_title' class='form-control'  required='true'>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <p class='text-center lead'>Dados das Ações</p>
+            </div>
+            <div id='actions'>
+              <div class="row">
+                <p class='text-center lead'>Dados da Ação 1</p>
+                <div class="form-group">
+                  <label for="action-title">Título da Ação</label>
+                  <input type="text" name='action-title' class="form-control" value="" required='true'>
+                </div>
+
+                <div class="form-group">
+                  <label for="success-plan-key">Chave para essa ação (será usada no código e não pode se repetir)</label>
+                  <input type="text" name="action-key" placeholder='action_short_title' class='form-control' required='true' value='short_title'>
+                </div>
+
+                <div class="form-group">
+                  <label for="action-description">Descrição da Ação</label>
+                  <input type="text" name='action-description' class="form-control" value="" required='true'>
+                </div>
+
+                <div class="form-group">
+                  <label for="action-know-more">"Saiba Mais" da Ação</label>
+                  <input type="text" name='action-know-more' class="more form-control" value="testandinho <a href='xundinha' target='_blank'> pemba-laka</a> xunda">
+                </div>
+
+                <div class="form-group">
+                  <label for="action-know-more-cta">Texto do CTA da Ação</label>
+                  <input type="text" name='action-know-more-cta' class="form-control" value="teste">
+                </div>
+
+                <div class="form-group">
+                  <label for="action-know-more-cta-url">Link do CTA da Ação</label>
+                  <input type="text" name='action-know-more-cta-url' class="form-control" value="http://pudim.com.br">
+                </div>
+
+                <div class="form-group">
+                  <label for="action-know-more-video-url">Link para o vídeo da Ação</label>
+                  <input type="text" name='action-know-more-video-url' class="form-control" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="btn btn-block btn-primary" id="add-action">Adicionar Ação</span>
+          </div>
+
+          <div class="row">
+            <input type="submit" id='generate-success-plan' class='btn btn-success btn-block' value='Gerar Plano de Sucesso'>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <pre id='yaml'></pre>
+      </div>
+    </div>
+  </body>
+</html>

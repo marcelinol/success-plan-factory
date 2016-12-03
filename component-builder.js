@@ -22,7 +22,7 @@ var ComponentBuilder = (function($) {
         tag: 'input',
         properties: {
           type: 'hidden',
-          name: 'suffix',
+          name: properties.textInputName + '-suffix',
           class: '',
           value: properties.hiddenInputValue,
           placeholder: ''

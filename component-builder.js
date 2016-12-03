@@ -98,9 +98,9 @@ var ComponentBuilder = (function($) {
   var generateActionHeader = function() {
     var actionId, upperDiv, componentTitle, collapseLink, mainDiv;
     actionId = 'action-' + $actionsCounter;
-    upperDiv = generateElement('div', { class: 'row' })
-    componentTitle = generateElement('p', {
-       class: 'text-center lead',
+    upperDiv = generateElement('div', { class: 'panel panel-default' })
+    componentTitle = generateElement('div', {
+       class: 'panel-heading lead',
     });
     collapseLink = generateElement('a', {
       href: '#' + actionId,
@@ -109,7 +109,7 @@ var ComponentBuilder = (function($) {
     });
     collapseLink.appendTo(componentTitle);
     componentTitle.appendTo(upperDiv);
-    mainDiv = generateElement('div', { id: actionId , class: 'row collapse in' })
+    mainDiv = generateElement('div', { id: actionId , class: 'panel-body collapse in' })
     mainDiv.appendTo(upperDiv);
     return [upperDiv, mainDiv]
   };

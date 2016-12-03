@@ -1,115 +1,113 @@
 var ComponentBuilder = (function($) {
 
-  var $components = {
-    actionTitle: {
-      divClass: 'form-group',
-      labelName: 'action-title',
-      labelText: 'Título da Ação',
-      inputType: 'text',
-      inputName: 'action-title',
-      inputClass: 'form-control',
-      inputPlaceholder: ''
-    },
-    actionKey: {
-      divClass: 'form-group',
-      labelName: 'action-key',
-      labelText: 'Chave para essa ação (será usada no código e não pode se repetir)',
-      inputType: 'text',
-      inputName: 'action-key',
-      inputClass: 'form-control',
-      inputPlaceholder: 'short_title'
-    },
-    actionDescription: {
-      divClass: 'form-group',
-      labelName: 'action-description',
-      labelText: 'Descrição da Ação',
-      inputType: 'text',
-      inputName: 'action-description',
-      inputClass: 'form-control',
-      inputPlaceholder: ''
-    },
-    actionKnowMore: {
-      divClass: 'form-group',
-      labelName: 'action-know-more',
-      labelText: '"Saiba Mais" da Ação',
-      inputType: 'text',
-      inputName: 'action-know-more',
-      inputClass: 'form-control',
-      inputPlaceholder: ''
-    },
-    actionKnowMoreCTA: {
-      divClass: 'form-group',
-      labelName: 'action-know-more-cta',
-      labelText: 'Texto do CTA da Ação',
-      inputType: 'text',
-      inputName: 'action-know-more-cta',
-      inputClass: 'form-control',
-      inputPlaceholder: ''
-    },
-    actionKnowMoreCTAURL: {
-      divClass: 'form-group',
-      labelName: 'action-know-more-cta-url',
-      labelText: 'Link do CTA da Ação',
-      inputType: 'text',
-      inputName: 'action-know-more-cta-url',
-      inputClass: 'form-control',
-      inputPlaceholder: ''
-    },
-    actionKnowMoreVideoURL: {
-      divClass: 'form-group',
-      labelName: 'action-know-more-video-url',
-      labelText: 'Link para o vídeo da Ação',
-      inputType: 'text',
-      inputName: 'action-know-more-video-url',
-      inputClass: 'form-control',
-      inputPlaceholder: ''
+  var generateComponentProperties = function(properties) {
+    return {
+      textInputLabel: {
+        tag: 'label',
+        properties: {
+          for: properties.labelName,
+          text: properties.labelText
+        }
+      },
+      textInput: {
+        tag: 'input',
+        properties: {
+          type: 'text',
+          name: properties.textInputName,
+          class: 'form-control',
+          placeholder: properties.textInputPlaceholder
+        }
+      },
+      hiddenInput: {
+        tag: 'input',
+        properties: {
+          type: 'hidden',
+          name: 'suffix',
+          class: '',
+          value: properties.hiddenInputValue,
+          placeholder: ''
+        }
+      }
     }
   };
 
-  var generateDiv = function(klass) {
-    return $("<div/>").attr('class', klass);
+  var $components = {
+    actionTitle: generateComponentProperties({
+      labelName: 'action-title',
+      labelText: 'Título da Ação',
+      textInputName: 'action-title',
+      textInputPlaceholder: '',
+      hiddenInputValue: ''
+    }),
+    actionKey: generateComponentProperties({
+      labelName: 'action-key',
+      labelText: 'Chave para essa ação (será usada no código e não pode se repetir)',
+      textInputName: 'action-key',
+      textInputPlaceholder: 'short_title',
+      hiddenInputValue: ''
+    }),
+    actionDescription: generateComponentProperties({
+      labelName: 'action-description',
+      labelText: 'Descrição da Ação',
+      textInputName: 'action-description',
+      textInputPlaceholder: '',
+      hiddenInputValue: '_description'
+    }),
+    actionKnowMore: generateComponentProperties({
+      labelName: 'action-know-more',
+      labelText: '"Saiba Mais" da Ação',
+      textInputName: 'action-know-more',
+      textInputPlaceholder: '',
+      hiddenInputValue: '_know_more'
+    }),
+    actionKnowMoreCTA: generateComponentProperties({
+      labelName: 'action-know-more-cta',
+      labelText: 'Texto do CTA da Ação',
+      textInputName: 'action-know-more-cta',
+      textInputPlaceholder: '',
+      hiddenInputValue: '_know_more_cta'
+    }),
+    actionKnowMoreCTAURL: generateComponentProperties({
+      labelName: 'action-know-more-cta-url',
+      labelText: 'Link do CTA da Ação',
+      textInputName: 'action-know-more-cta-url',
+      textInputPlaceholder: '',
+      hiddenInputValue: '_know_more_cta_url'
+    }),
+    actionKnowMoreVideoURL: generateComponentProperties({
+      labelName: 'action-know-more-video-url',
+      labelText: 'Link para o vídeo da Ação',
+      textInputName: 'action-know-more-video-url',
+      textInputPlaceholder: '',
+      hiddenInputValue: '_know_more_video_url'
+    })
   };
 
-  var generateText = function(klass, text) {
-    return $("<p/>")
-      .attr('class', klass)
-      .text(text);
-  };
-
-  var generateInput = function(type, name, klass, placeholder) {
-    return $("<input/>")
-      .attr('type', type)
-      .attr('name', name)
-      .attr('class', klass)
-      .attr('placeholder', placeholder);
-  };
-
-  var generateLabel = function(name, text) {
-    return $("<label/>")
-      .attr('for', name)
-      .text(text);
-  };
-
-  var generateActionTitleFormGroup = function() {
-    var div = generateDiv('form-group');
-    var label = generateLabel('action-title', 'Título da Ação');
-    var input = generateTextInput('action-title');
-    label.appendTo(div);
-    input.appendTo(div);
-    div.appendTo(document.getElementById('form-inputs'));
+  var generateElement = function(tag, properties) {
+    var element = $("<" + tag + "/>");
+    $.each(properties, function(attrName, attrValue) {
+      if(attrName == 'text')
+        element.text(attrValue)
+      else
+        element.attr(attrName, attrValue);
+    });
+    return element;
   };
 
   var generateComponent = function() {
-    var mainDiv = generateDiv('row');
-    var componentTitle = $("<p/>").attr('class', 'text-center lead').text('Dados da Ação');
+    var mainDiv = generateElement('div', { class: 'row' })
+    var componentTitle = generateElement('p', {
+       class: 'text-center lead',
+       text: 'Dados da Ação'
+    });
     componentTitle.appendTo(mainDiv);
     var componentsLength = Object.keys($components).length;
-    $.each($components, function(component, properties) {
-      var div = generateDiv(properties.divClass);
-      var label = generateLabel(properties.labelName, properties.labelText);
-      var input = generateInput(properties.inputType, properties.inputName, properties.inputClass, properties.inputPlaceholder);
-      label.appendTo(div);
-      input.appendTo(div);
+    $.each($components, function(component, elements) {
+      var div = generateElement('div', { class: 'form-group' })
+      $.each(elements, function(element, elementProperties) {
+        var element = generateElement(elementProperties.tag, elementProperties.properties);
+        element.appendTo(div);
+      });
       div.appendTo(mainDiv);
     });
     mainDiv.appendTo(document.getElementById('form-inputs'));

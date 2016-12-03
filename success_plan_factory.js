@@ -45,7 +45,6 @@ var SuccessPlanFactory = (function($) {
                data['success-plan-key'] + '_description: ' + data['success-plan-description'] + '\n';
     var actionsLength = data['action-title'].length
     for(var i = 0; i < actionsLength; i++) {
-      debugger;
       yaml += '  ' + data['action-key'][i] + ': ' + data['action-title'][i] + '\n' +
               '  ' + data['action-key'][i] + '_description: ' + data['action-description'][i] + '\n';
 

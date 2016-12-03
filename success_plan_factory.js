@@ -16,6 +16,14 @@ var SuccessPlanFactory = (function($) {
       return o;
   };
 
+  var addActionHTML = '<p class="text-center lead">Dados da Ação</p>\                   <div class="form-group">\                     <label for="action-title">Título da Ação</label>\                     <input type="text" name="action-title" class="form-control" value="" required="true">\                   </div>\
+                 <div class="form-group">\                     <label for="success-plan-key">Chave para essa ação (será usada no código e não pode se repetir)</label>\                     <input type="text" name="action-key" placeholder="action_short_title" class="form-control" required="true" value="short_title">\                   </div>\
+                 <div class="form-group">\                     <label for="action-description">Descrição da Ação</label>\                     <input type="text" name="action-description" class="form-control" value="" required="true">\                   </div>\
+                 <div class="form-group">\                     <label for="action-know-more">"Saiba Mais" da Ação</label>\                     <input type="text" name="action-know-more" class="more form-control" value="">\                   </div>\
+                 <div class="form-group">\                     <label for="action-know-more-cta">Texto do CTA da Ação</label>\                     <input type="text" name="action-know-more-cta" class="form-control" value="">\                   </div>\
+                 <div class="form-group">\                     <label for="action-know-more-cta-url">Link do CTA da Ação</label>\                     <input type="text" name="action-know-more-cta-url" class="form-control" value="">\                   </div>\
+                 <div class="form-group">\                     <label for="action-know-more-video-url">Link para o vídeo da Ação</label>\                     <input type="text" name="action-know-more-video-url" class="form-control" value="">\                   </div>';
+
   var init = function() {
     $('#add-action').on('click', addAction)
     $('#generate-success-plan').on('click', generateYAML);
@@ -25,13 +33,7 @@ var SuccessPlanFactory = (function($) {
     var div = document.createElement('div');
 
     div.className = 'row';
-    div.innerHTML = '<p class="text-center lead">Dados da Ação</p>\                   <div class="form-group">\                     <label for="action-title">Título da Ação</label>\                     <input type="text" name="action-title" class="form-control" value="" required="true">\                   </div>\
-                   <div class="form-group">\                     <label for="success-plan-key">Chave para essa ação (será usada no código e não pode se repetir)</label>\                     <input type="text" name="action-key" placeholder="action_short_title" class="form-control" required="true" value="short_title">\                   </div>\
-                   <div class="form-group">\                     <label for="action-description">Descrição da Ação</label>\                     <input type="text" name="action-description" class="form-control" value="" required="true">\                   </div>\
-                   <div class="form-group">\                     <label for="action-know-more">"Saiba Mais" da Ação</label>\                     <input type="text" name="action-know-more" class="more form-control" value="">\                   </div>\
-                   <div class="form-group">\                     <label for="action-know-more-cta">Texto do CTA da Ação</label>\                     <input type="text" name="action-know-more-cta" class="form-control" value="">\                   </div>\
-                   <div class="form-group">\                     <label for="action-know-more-cta-url">Link do CTA da Ação</label>\                     <input type="text" name="action-know-more-cta-url" class="form-control" value="">\                   </div>\
-                   <div class="form-group">\                     <label for="action-know-more-video-url">Link para o vídeo da Ação</label>\                     <input type="text" name="action-know-more-video-url" class="form-control" value="">\                   </div>';
+    div.innerHTML = addActionHTML;
 
       document.getElementById('form-inputs').appendChild(div);
   };

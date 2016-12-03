@@ -1,7 +1,10 @@
 var SuccessPlanFactory = (function($) {
 
   var init = function() {
-    $('#add-action').on('click', addAction)
+    $('#add-action').on('click', function() {
+      $('.collapse.in').collapse('hide');
+      addAction();
+    });
     $('#generate-success-plan').on('click', generateYAML);
   };
 

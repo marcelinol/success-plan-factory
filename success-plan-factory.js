@@ -28,7 +28,6 @@ var SuccessPlanFactory = (function($) {
   var generateYAML = function(e) {
     e.preventDefault();
     var data = $('form').serializeObject();
-    debugger;
     var yaml = data['success-plan-key'] + ': ' + data["success-plan-title"] + '\n' +
                data['success-plan-key'] + '_description: ' + data['success-plan-description'] + '\n';
     var actionsLength = data['action-title'].length

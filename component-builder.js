@@ -1,4 +1,5 @@
 var ComponentBuilder = (function($) {
+  var $actionsCounter = 0;
 
   var generateComponentProperties = function(properties) {
     return {
@@ -95,12 +96,21 @@ var ComponentBuilder = (function($) {
   };
 
   var generateComponent = function() {
-    var mainDiv = generateElement('div', { class: 'row' })
+    var actionId = 'action-' + $actionsCounter;
+    var upperDiv = generateElement('div', { class: 'row' })
     var componentTitle = generateElement('p', {
        class: 'text-center lead',
-       text: 'Dados da Ação'
     });
-    componentTitle.appendTo(mainDiv);
+    var collapseLink = generateElement('a', {
+      href: '#' + actionId,
+      'data-toggle': 'collapse',
+      text: 'Ação ' + $actionsCounter
+    });
+    collapseLink.appendTo(componentTitle);
+    componentTitle.appendTo(upperDiv);
+    var mainDiv = generateElement('div', { id: actionId , class: 'row collapse in' })
+    mainDiv.appendTo(upperDiv);
+
     var componentsLength = Object.keys($components).length;
     $.each($components, function(component, elements) {
       var div = generateElement('div', { class: 'form-group' })
@@ -110,7 +120,8 @@ var ComponentBuilder = (function($) {
       });
       div.appendTo(mainDiv);
     });
-    mainDiv.appendTo(document.getElementById('form-inputs'));
+    upperDiv.appendTo(document.getElementById('form-inputs'));
+    $actionsCounter++;
   };
 
   return {

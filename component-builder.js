@@ -95,27 +95,35 @@ var ComponentBuilder = (function($) {
     return element;
   };
 
-  var generateComponent = function() {
-    var actionId = 'action-' + $actionsCounter;
-    var upperDiv = generateElement('div', { class: 'row' })
-    var componentTitle = generateElement('p', {
+  var generateActionHeader = function() {
+    var actionId, upperDiv, componentTitle, collapseLink, mainDiv;
+    actionId = 'action-' + $actionsCounter;
+    upperDiv = generateElement('div', { class: 'row' })
+    componentTitle = generateElement('p', {
        class: 'text-center lead',
     });
-    var collapseLink = generateElement('a', {
+    collapseLink = generateElement('a', {
       href: '#' + actionId,
       'data-toggle': 'collapse',
       text: 'Ação ' + $actionsCounter
     });
     collapseLink.appendTo(componentTitle);
     componentTitle.appendTo(upperDiv);
-    var mainDiv = generateElement('div', { id: actionId , class: 'row collapse in' })
+    mainDiv = generateElement('div', { id: actionId , class: 'row collapse in' })
     mainDiv.appendTo(upperDiv);
+    return [upperDiv, mainDiv]
+  };
 
-    var componentsLength = Object.keys($components).length;
+  var generateComponent = function() {
+    var header, upperDiv, mainDiv, componentsLength, element;
+    header = generateActionHeader();
+    upperDiv = header[0];
+    mainDiv = header[1];
+    componentsLength = Object.keys($components).length;
     $.each($components, function(component, elements) {
-      var div = generateElement('div', { class: 'form-group' })
+      div = generateElement('div', { class: 'form-group' })
       $.each(elements, function(element, elementProperties) {
-        var element = generateElement(elementProperties.tag, elementProperties.properties);
+        element = generateElement(elementProperties.tag, elementProperties.properties);
         element.appendTo(div);
       });
       div.appendTo(mainDiv);
